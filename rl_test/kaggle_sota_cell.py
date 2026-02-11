@@ -50,6 +50,10 @@ print("✅ Gymnasium OK")
 # === STEP 3: NOW import Ray (after patch) ===
 import numpy as np
 import ray
+
+# Initialize Ray with PYTHONPATH so workers can find pyquaticus
+ray.init(runtime_env={"env_vars": {"PYTHONPATH": REPO_DIR}}, ignore_reinit_error=True)
+
 from ray.rllib.algorithms.ppo import PPOConfig
 from ray.tune.registry import register_env
 from pettingzoo import ParallelEnv
